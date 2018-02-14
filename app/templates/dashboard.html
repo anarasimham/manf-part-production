@@ -1,0 +1,34 @@
+{% extends "bootstrap/base.html" %}
+{% block content %}
+<div class="container">
+	<h1>Maintenance Dashboard</h1>
+	<hr>
+	<div>Part Production Health: <span style="color:green; font-weight: bold; font-size:2rem;">Healthy</span></div>
+	<hr>
+	<div>
+	<div>Total alerts count: {{alerts_count}}</div>
+	<div>Recent alert data ({{recent_alert_count}} records): </div>
+	<table class="table table-striped">
+	<thead>
+		<tr>
+			<td>Violation Timestamp</td>
+			<td>Part - Short Name</td>
+			<td>Tolerance Lower Threshold</td>
+			<td>Value as Tested</td>
+		</tr>
+	</thead>
+	<tbody>
+	{% for item in alert_data %}
+		<tr>
+			{% for d in item %}
+			<td>
+			{{d}}
+			</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+	</div>
+</div>
+{% endblock %}

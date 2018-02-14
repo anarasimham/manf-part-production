@@ -1,0 +1,4 @@
+hs2conn
+mysqlconn
+*.pyc
+*.out
