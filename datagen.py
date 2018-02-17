@@ -2,6 +2,7 @@ import mysql.connector
 import sys
 import random
 import time
+from datetime import datetime
 
 if len(sys.argv) == 1:
     print("Need arg for num records, exiting.")
@@ -64,14 +65,14 @@ while num_recs_to_gen != 0:
     #if heat_tolr_pct < name_obj['heat']-name_obj['heat_thrs']:
     #    print 'heat too low'
     loc = random.randrange(1,10)
-    part_data = (time.strftime('%Y-%m-%d %H:%M:%S'), rec_id, name_obj['name'], name_obj['notes'], loc, vibr_tolr_pct, name_obj['vibr_dist_center']-name_obj['vibr_thrs'], heat_tolr_pct, name_obj['heat_dist_center']-name_obj['heat_thrs'], qty)
+    part_data = (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3], rec_id, name_obj['name'], name_obj['notes'], loc, vibr_tolr_pct, name_obj['vibr_dist_center']-name_obj['vibr_thrs'], heat_tolr_pct, name_obj['heat_dist_center']-name_obj['heat_thrs'], qty)
     cursor.execute(add_part, part_data)
     rec_id += 1
     print(rec_id)
     num_recs_to_gen -= 1
     if num_recs_to_gen % 100 == 0:
         cnx.commit()
-    time.sleep(random.random()/50)
+    time.sleep(random.random()/5)
 
 cnx.commit()
 cursor.close()
