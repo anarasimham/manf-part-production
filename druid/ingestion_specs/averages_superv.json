@@ -1,0 +1,57 @@
+{
+  "type": "kafka",
+  "dataSchema": {
+    "dataSource": "manf-averages-kafka",
+    "parser": {
+      "type": "string",
+      "parseSpec": {
+        "format": "json",
+        "timestampSpec": {
+          "column": "time"
+        },
+        "dimensionsSpec": {
+          "dimensions": [
+            "part_type", "violation_type"
+            ],
+            "dimensionExclusions": [
+              "violation_time"
+            ]
+        }
+      }
+    },
+    "metricsSpec": [
+      {
+        "name": "count",
+        "type": "count"
+      },
+      {
+        "name": "threshold",
+        "fieldName": "threshold",
+        "type": "doubleSum"
+      },
+      {
+        "name": "average_val",
+        "fieldName": "average_val",
+        "type": "doubleSum"
+      }
+    ],
+    "granularitySpec": {
+      "segmentGranularity": "HOUR",
+      "queryGranularity": "NONE",
+      "rollup": "false"
+    }
+  },
+  "tuningConfig": {
+    "type": "kafka",
+    "maxRowsPerSegment": 5000000
+  },
+  "ioConfig": {
+    "topic": "manf_averages_errors",
+    "consumerProperties": {
+      "bootstrap.servers": "anarasimham-hwx3.field.hortonworks.com:6667"
+    },
+    "taskCount": 1,
+    "replicas": 1,
+    "taskDuration": "PT1M"
+  }
+}

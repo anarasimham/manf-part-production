@@ -1,0 +1,50 @@
+{
+  "queryType": "topN",
+  "dataSource": "parts-errors-kafka",
+  "metric": "count",
+  "granularity": "all",
+
+  "dimension": "shortname",
+  "threshold": 10,
+
+  "intervals": [
+    "PT8H/<<now>>"
+  ],
+  "aggregations": [
+    {
+      "type": "longSum",
+      "name": "count",
+      "fieldName": "count"
+    },
+    {
+      "type": "doubleSum",
+      "name": "vibrSum",
+      "fieldName": "vibrMeasure"
+    },
+    {
+      "type": "doubleSum",
+      "name": "vibrThrsMeasure",
+      "fieldName": "vibrThreshold"
+    }
+  ],
+  "postAggregations":[{
+    "type": "arithmetic",
+    "name": "average_last_100_vibr",
+    "fn": "/",
+    "fields": [
+      {"type": "fieldAccess", "fieldName": "vibrSum"},
+      {"type": "fieldAccess", "fieldName": "count"}
+    ]
+  },
+  {
+     "type": "arithmetic",
+     "name": "average_last_100_vibr_thrs",
+     "fn": "/",
+     "fields": [
+       {"type": "fieldAccess", "fieldName": "vibrThrsMeasure"},
+       {"type": "fieldAccess", "fieldName": "count"}
+     ]
+   }
+
+]
+}

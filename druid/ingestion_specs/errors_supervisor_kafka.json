@@ -1,0 +1,71 @@
+{
+  "type": "kafka",
+  "dataSchema": {
+    "dataSource": "parts-errors-kafka",
+    "parser": {
+      "type": "string",
+      "parseSpec": {
+        "format": "json",
+        "timestampSpec": {
+          "column": "time",
+          "format": "yyyy-MM-dd HH:mm:ss.SSS"
+        },
+        "dimensionsSpec": {
+          "dimensions": [
+            "shortname",
+            {
+              "name": "qty",
+              "type": "long"
+            }],
+          "dimensionExclusions": [
+            "time","notes","part_loc","id"
+          ]
+        }
+      }
+    },
+    "metricsSpec": [
+      {
+        "name": "count",
+        "type": "count"
+      },
+      {
+        "name": "vibrMeasure",
+        "fieldName": "vibr_tolr_pct",
+        "type": "doubleSum"
+      },
+      {
+        "name": "vibrThreshold",
+        "fieldName": "vibr_tolr_thrs",
+        "type": "doubleSum"
+      },
+      {
+        "name": "heatMeasure",
+        "fieldName": "heat_tolr_pct",
+        "type": "doubleSum"
+      },
+      {
+        "name": "heatThreshold",
+        "fieldName": "heat_tolr_thrs",
+        "type": "doubleSum"
+      }
+    ],
+    "granularitySpec": {
+      "type": "uniform",
+      "segmentGranularity": "HOUR",
+      "queryGranularity": "NONE"
+    }
+  },
+  "tuningConfig": {
+    "type": "kafka",
+    "maxRowsPerSegment": 5000000
+  },
+  "ioConfig": {
+    "topic": "manf_all_errors",
+    "consumerProperties": {
+      "bootstrap.servers": "anarasimham-hwx3.field.hortonworks.com:6667"
+    },
+    "taskCount": 1,
+    "replicas": 1,
+    "taskDuration": "PT1M"
+  }
+}
