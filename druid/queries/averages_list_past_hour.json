@@ -1,0 +1,12 @@
+{
+  "queryType": "select",
+  "dataSource": "manf-averages-kafka",
+  "descending": "true",
+  "dimensions":[],
+  "metrics":[],
+  "granularity": "all",
+  "intervals": [
+    "PT1H/<<now>>"
+  ],
+  "pagingSpec":{"pagingIdentifiers": {}, "threshold":25}
+}

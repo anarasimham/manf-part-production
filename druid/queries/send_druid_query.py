@@ -15,6 +15,6 @@ q = f.read()
 q = q.replace('<<now>>', now_dt)
 
 headers = {'Content-Type': 'application/json'}
-r = requests.post('http://localhost:8082/druid/v2/?pretty', headers=headers, data=q)
+r = requests.post('http://anarasimham-hwx1.field.hortonworks.com:8082/druid/v2/?pretty', headers=headers, data=q)
 print(r.content)
 

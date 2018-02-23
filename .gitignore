@@ -1,4 +1,4 @@
-hs2conn
+druidconn
 mysqlconn
 *.pyc
 *.out
