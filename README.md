@@ -14,7 +14,7 @@ There are 5 parts:
 
 To use:
 1. Keep in mind, you will need to edit some of the below scripts to provide environment-specific server hostnames/ports/credentials
-1. Create MySQL table using the script for the manufacturing table in the github.com/anarasimham/data-gen repository
+1. Create MySQL table using the script for the manufacturing table in the http://github.com/anarasimham/data-gen repository
 2. Create the NiFi flow. You can find the export XML for this in the `setup_resources` folder of this project. You'll need to add the template to NiFi and then import it. You'll also need to configure NiFi with the appropriate environment details (hostnames, etc.)
 3. Setup the Kafka topics. You can find a script for doing this in the `setup_resources` folder
 4. Setup the Druid Kafka ingestion services to pull in data from Kafka. There is a script for this in `setup_resources`
