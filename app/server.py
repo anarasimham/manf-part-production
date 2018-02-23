@@ -20,7 +20,7 @@ def hello():
 def dashboard():
     headers = {'Content-Type': 'application/json'}
     recent_count = 0
-    alerts_count = 0
+    past_day_count = 0
     alert_data = []
 
     averages_query_file = open('../druid/queries/averages_list_past_hour.json', 'r')
