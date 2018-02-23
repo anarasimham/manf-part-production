@@ -20,7 +20,7 @@ To use:
 4. Setup the Druid Kafka ingestion services to pull in data from Kafka. There is a script for this in `setup_resources`
 5. Start up the custom dashboard. Run `python app/server.py`. You should be able to navigate to `<hostname>:5000` to see a hello world page
 6. Start up the data generator. Instructions for this are in the anarasimham/data-gen GitHub repo
-7. You should start seeing data come up in the dashboard after 30 seconds with a page refresh if everything is configured correctly
+7. You should start seeing data come up in the dashboard at `<hostname>:5000/dashboard` after 30 seconds with a page refresh if everything is configured correctly
 
 Notes:
 - You will need to configure either two Druid MiddleManager nodes or increase the capacity of tasks your MiddleManager can handle (change druid.worker.capacity in Ambari). Default value is 3 but we will need at least 7. I've configured 12.
