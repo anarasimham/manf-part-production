@@ -29,3 +29,5 @@ Notes:
   - Pyhs2 - must run `sudo yum install gcc-c++ python-devel.x86_64 cyrus-sasl-devel.x86_64` as a dependency
   - MySQL - must run `pip install mysql-connector==2.1.6`
 - In the Ambari Druid settings, change druid.extensions.loadList to include 'druid-kafka-indexing-service'
+- You'll need to download the MySQL JDBC driver and put into the NiFi lib directory to connect to MySQL
+- Need to install flask/flask_bootstrap via pip to run the custom dashboard server
