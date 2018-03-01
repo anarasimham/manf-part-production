@@ -26,7 +26,7 @@ Notes:
 - You will need to configure either two Druid MiddleManager nodes or increase the capacity of tasks your MiddleManager can handle (change druid.worker.capacity in Ambari). Default value is 3 but we will need at least 7. I've configured 12.
 - On the machine where you install the data-gen repository and want to insert data to MySQL/Hive, you'll need to install the respective Pip packages
   - Install Pip first
-  - Pyhs2 - must run `sudo yum install gcc-c++ python-devel.x86_64 cyrus-sasl-devel.x86_64` as a dependency
+  - Pyhs2 - must run `sudo yum install gcc-c++ python-devel.x86_64 cyrus-sasl-devel.x86_64` as a dependency, then you can run `pip install pyhs2`
   - MySQL - must run `pip install mysql-connector==2.1.6`
 - In the Ambari Druid settings, change druid.extensions.loadList to include 'druid-kafka-indexing-service'
 - You'll need to download the MySQL JDBC driver and put into the NiFi lib directory to connect to MySQL
