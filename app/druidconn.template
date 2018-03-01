@@ -1,4 +1,4 @@
 host
-port
-apipath
+8082
+/druid/v2/?pretty
 queryurl
