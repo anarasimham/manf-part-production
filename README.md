@@ -1,7 +1,9 @@
 # Manufacturing Part Production Demo
 Demo for streaming part production data, analysis of thresholds versus tested data, alerting, and dashboarding for end users. Uses the Hortonworks HDF and HDP platforms.
 
-This is meant to simulate a part production line, where produced parts are written as rows into an RDBMS (MySQL in this case). Those rows are then processed by the platform and made available via dashboard, with mechanisms for alerting the appropriate parties when event thresholds are breached.
+In the automotive world, parts are produced in an assembly line and must go through rigorous testing to ensure their integrity before they are bolted onto a car. Imagine an engine component being tested for heat tolerance (you wouldn’t want your engine breaking down in the middle of the Arizona desert) or a wheel assembly being tested for vibration tolerance (I hope my wheel doesn’t roll off as I’m driving!).
+ 
+That’s what we seek to simulate in this demo – parts are produced at a fairly constant rate using our sample data generator, evaluated against their vibration and heat thresholds, and aggregated as well as reported on if they fail to meet standards that have been set for them.  This information will be shown to an end user (think Operations team, floor team) audience in the form of a dashboard. They can then take action and alert the proper individuals to fix the issues in their process, whether that is removing the set of parts from being included in production or re-testing.
 
 There are 5 parts:
 - MySQL database, into which the datagen.py script writes rows
@@ -23,7 +25,7 @@ To use:
 7. You should start seeing data come up in the dashboard at `<hostname>:5000/dashboard` after 30 seconds with a page refresh if everything is configured correctly
 
 Notes:
-- You will need to configure either two Druid MiddleManager nodes or increase the capacity of tasks your MiddleManager can handle (change druid.worker.capacity in Ambari). Default value is 3 but we will need at least 7. I've configured 12.
+- You will need to configure either two Druid MiddleManager nodes or increase the capacity of tasks your MiddleManager can handle (change druid.worker.capacity in Ambari). Default value is 3 but we will need at least 7. I've configured 12 (two MiddleManagers with capacity of 6 each).
 - On the machine where you install the data-gen repository and want to insert data to MySQL/Hive, you'll need to install the respective Pip packages
   - Install Pip first
   - Pyhs2 - must run `sudo yum install gcc-c++ python-devel.x86_64 cyrus-sasl-devel.x86_64` as a dependency, then you can run `pip install pyhs2`
