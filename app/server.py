@@ -5,7 +5,8 @@ import json
 from datetime import datetime
 
 f = open('druidconn')
-(hostn,portn,path,queryurl) = f.read().splitlines()
+(hostn,portn,path) = f.read().splitlines()
+queryurl = hostn+":"+portn+path
 
 app = Flask(__name__)
 app.jinja_env.auto_reload = True

@@ -2,3 +2,4 @@ druidconn
 mysqlconn
 *.pyc
 *.out
+.DS_Store
